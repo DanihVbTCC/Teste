@@ -182,6 +182,7 @@ export class ServicosContratadosPage implements OnInit {
       }
   		});
       
+      
   }
 
   async confirmar(id) {
