@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'editar-perfil', loadChildren: './editar-perfil/editar-perfil.module#EditarPerfilPageModule' },
   { path: 'buffet', loadChildren: './buffet/buffet.module#BuffetPageModule' },
   { path: 'perfil-evento', loadChildren: './perfil-evento/perfil-evento.module#PerfilEventoPageModule' },
-  { path: 'editar-servico', loadChildren: './editar-servico/editar-servico.module#EditarServicoPageModule' },
+  { path: 'editar-servico/:d', loadChildren: './editar-servico/editar-servico.module#EditarServicoPageModule' },
   { path: 'convidados', loadChildren: './convidados/convidados.module#ConvidadosPageModule' },
   { path: 'adicionar-convidados', loadChildren: './adicionar-convidados/adicionar-convidados.module#AdicionarConvidadosPageModule' },
   { path: 'divulgar-evento', loadChildren: './divulgar-evento/divulgar-evento.module#DivulgarEventoPageModule' },
@@ -46,6 +46,9 @@ const routes: Routes = [
   { path: 'welcome', loadChildren: './welcome/welcome.module#WelcomePageModule' },
   { path: 'carregamento1', loadChildren: './carregamento1/carregamento1.module#Carregamento1PageModule' },
   { path: 'carregamento2', loadChildren: './carregamento2/carregamento2.module#Carregamento2PageModule' },
+  { path: 'adicionar-servico-evento', loadChildren: './adicionar-servico-evento/adicionar-servico-evento.module#AdicionarServicoEventoPageModule' },
+  { path: 'servicos-contratados/:id', loadChildren: './servicos-contratados/servicos-contratados.module#ServicosContratadosPageModule' },
+
 
 
 
