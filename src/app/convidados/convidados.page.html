@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button icon="md-arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Convidados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="ion-padding">
+  <form>
+    <ion-searchbar placeholder="Pesquisar convidado..." cancelButtonText="Cancelar" animated></ion-searchbar>
+    <ion-button class="ion-button" expand="block" color="light">Pesquisar</ion-button>
+  </form>
+  <ion-grid  no-padding>     
+    
+      <br>
+      <ion-row>
+          <ion-col size="7">
+            <div align="start"><ion-text [color]="cor1"><b>Lista de Convidados</b></ion-text></div>
+          </ion-col>
+          <ion-col>
+            <div align="start"><ion-text [color]="cor1"><b>Total: {{total}}</b></ion-text></div>
+          </ion-col>
+        </ion-row>
+
+      <ion-item-sliding *ngFor="let convidado of convidados">
+        <ion-row class="ion-align-items-center">
+          <ion-col (click)="formAlterarConvidados(convidado.idListaConvidados)" size="6">
+            <div>{{convidado.Nome}}</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="center"><ion-checkbox color="light" (click)="Situacao(convidado.idListaConvidados, convidado.Situacao)" [checked]="convidado.Situacao"></ion-checkbox></div>
+          </ion-col>
+        </ion-row>
+      </ion-item-sliding>
+      </ion-grid>
+</ion-content>
+
+<ion-footer 	translucent="true" class="ion-padding-bottom">
+  <ion-button class="ion-button" color="light" expand="block" (click)="goToAdicionarConvidados()">
+    Adicionar Convidados
+  </ion-button>
+</ion-footer>

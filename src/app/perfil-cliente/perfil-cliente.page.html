@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="light">
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+    <ion-title>Perfil</ion-title>   
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-card>
+<ion-list>
+
+	<ion-item>
+          <ion-label>
+			<h2><b>{{nome}}</b></h2>
+		  </ion-label>
+		  <ion-icon slot="end" [color]="cor2" (click)="cancelar()" enable="false" name="close"></ion-icon>  
+		  <ion-icon slot="end" [color]="cor" (click)="editar()" [name]="icone"></ion-icon> 
+
+        </ion-item>
+
+	  <ion-item lines="none">
+		<ion-label position="floating">CPF</ion-label>
+		<ion-input type="text" [disabled]="display" [(ngModel)]="cpf"></ion-input>
+	  </ion-item>
+
+	   <ion-item lines="none">
+		<ion-label position="floating">Celular</ion-label>
+		<ion-input type="text" [disabled]="display" [(ngModel)]="celular"></ion-input>
+	  </ion-item>
+
+	  <ion-item lines="none">
+		<ion-label position="floating">Telefone</ion-label>
+		<ion-input type="text" [disabled]="display" [(ngModel)]="telefone"></ion-input>
+	  </ion-item>
+	
+	  <ion-item lines="none">
+		<ion-label position="floating">Contato Secundário</ion-label>
+		<ion-input type="text" [disabled]="display" [(ngModel)]="contato_secundario"></ion-input>
+	  </ion-item>
+
+	</ion-list>
+</ion-card>
+
+</ion-content>
+
+<ion-footer class="ion-padding-bottom">
+	  <ion-button  class="ion-button" expand="block" padding color="light">Alterar Senha</ion-button>
+</ion-footer>

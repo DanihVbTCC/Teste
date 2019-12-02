@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar color="light">
+        <ion-buttons slot="start">
+        <ion-back-button icon="md-arrow-back" ></ion-back-button>
+          </ion-buttons>
+      <ion-title>Calculadora</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content class="ion-padding">
+  
+    <h4><b>Suprimentos</b></h4>
+  
+    <ion-list no-lines>
+      
+      <ion-item>
+      <ion-label>Pratos</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="pratos"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Copos</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="copos"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Talheres</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="talheres"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Guardanapo</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="guardanapo"></ion-checkbox>
+    </ion-item>
+
+    </ion-list>
+  </ion-content>
+  
+  <ion-footer class="ion-padding-bottom">
+    <ion-button class="ion-button" expand="block" color="light" (click)="formCalculadorai()">Continuar</ion-button>
+  </ion-footer>  
+  

@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar color="light">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+          </ion-buttons>
+      <ion-title>Editar Serviço</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+<ion-content scroll="false" padding>   
+  <ion-list>
+    <ion-item>    
+      <ion-label>Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="nome_servico"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Descrição</ion-label>
+      <ion-input type="text" [(ngModel)]="descricao_servico"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+    <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar" [(ngModel)]="tipo_servico">
+      <ion-select-option value="buffet">Buffet</ion-select-option>
+      <ion-select-option value="bebidas">Bebidas</ion-select-option>
+      <ion-select-option value="entretenimento">Entretenimento</ion-select-option>
+      <ion-select-option value="seguranca">Segurança</ion-select-option>
+      <ion-select-option value="limpeza">Limpeza</ion-select-option>
+    </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-button class="ion-button" expand="block" padding color="light" (click)="alterarServico()">Salvar</ion-button>
+</ion-content>
