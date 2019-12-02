@@ -29,7 +29,9 @@
         'CPF' => $data['CPF'],
         'Celular' => $data['Celular'],
         'Telefone' => $data['Telefone'],
-        'SecunContat'=> $data['SecunContat']
+        'SecunContat'=> $data['SecunContat'],
+	      'FirstTime' => $data['FirstTime'],
+        'Status' => $data['Status']
       );
 
       if($data['Status']=='y'){
@@ -208,12 +210,48 @@
       $datauser = array(
         'idUsuario' => $data['idUsuario'],
         'Login' => $data['Login'],
+        'Senha' => $data['Senha'],
         'Nome' => $data['Nome'],
         'Email' => $data ['Email'],
+        'idTipo' => $data['idTipo'],
         'CPF' => $data['CPF'],
         'Celular' => $data['Celular'],
         'Telefone' => $data['Telefone'],
-        'SecunContat'=> $data['SecunContat']
+        'SecunContat'=> $data['SecunContat'],
+        'FirstTime' => $data['FirstTime'],
+        'Status' => $data['Status']
+      );
+
+        $result = json_encode(array('success'=>true, 'result'=>$datauser));
+    }else{
+      $result = json_encode(array('success'=>false, 'msg'=>'Erro ao alterar informações'));
+    }
+
+    echo $result;
+    }
+
+    //Update First Time
+    elseif($postjson['aksi']=='updateFirst'){
+      $query = mysqli_query($mysqli, "UPDATE usuario SET
+        FirstTime = 'n'   WHERE idUsuario='$postjson[idUsuario]'");
+
+      $query = mysqli_query($mysqli, "SELECT * FROM usuario WHERE idUsuario='$postjson[idUsuario]'");
+      $check = mysqli_num_rows($query);
+    if($check>0){
+      $data = mysqli_fetch_array($query);
+      $datauser = array(
+        'idUsuario' => $data['idUsuario'],
+        'Login' => $data['Login'],
+        'Senha' => $data['Senha'],
+        'Nome' => $data['Nome'],
+        'Email' => $data ['Email'],
+        'idTipo' => $data['idTipo'],
+        'CPF' => $data['CPF'],
+        'Celular' => $data['Celular'],
+        'Telefone' => $data['Telefone'],
+        'SecunContat'=> $data['SecunContat'],
+        'FirstTime' => $data['FirstTime'],
+        'Status' => $data['Status']
       );
 
         $result = json_encode(array('success'=>true, 'result'=>$datauser));
@@ -257,7 +295,7 @@
         Estado = '$postjson[Estado]',
         Cidade = '$postjson[Cidade]',
         Celular = '$postjson[Celular]',
-        Telefone = '$postjson[Telefone]' 
+        Telefone = '$postjson[Telefone]'
         WHERE idService='$postjson[idService]'");
 
       if($query) $result = json_encode(array('success'=>true, 'result'=>'success'));
@@ -422,21 +460,21 @@
     elseif($postjson['aksi']=='getServicosContratados'){
       $data = array();
       $query = mysqli_query($mysqli, "SELECT ls.idListaService, ls.idEvento, ls.idService, s.Nome, s.Tipo, s.Descricao FROM listaservice ls INNER JOIN  service s ON ls.idService = s.idService WHERE ls.idEvento='$postjson[idEvento]' ORDER BY s.idService LIMIT $postjson[start],$postjson[limit]");
-  
+
       while($row = mysqli_fetch_array($query)){
-  
+
         $data[] = array(
           'idService' => $row['idService'],
           'Nome' => $row['Nome'],
           'Tipo' => $row['Tipo'],
           'Descricao' => $row['Descricao'],
-  
+
         );
       }
-  
+
       if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
       else $result = json_encode(array('success'=>false));
-  
+
       echo $result;
     }
 
