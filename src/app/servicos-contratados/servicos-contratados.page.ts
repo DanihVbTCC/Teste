@@ -148,7 +148,10 @@ export class ServicosContratadosPage implements OnInit {
   }
 
   goToPerfilServico(id){
-  	this.router.navigate(['/perfil-servico/' + id]);
+    this.actRoute.params.subscribe((data: any) =>{
+      this.idEvento = data.id;
+    this.router.navigate(['/perfil-servico/' + id]);
+    });
   }
 
   goToPesquisarServico(){
@@ -158,7 +161,7 @@ export class ServicosContratadosPage implements OnInit {
   async delListaService(id){
   	let body = {
   			aksi : 'delServicoContratado',
-  			idListaService : id
+  			idService : id
   		};
 
   		this.postPvdr.postData(body, 'proses-api.php').subscribe(async data => {
@@ -181,8 +184,7 @@ export class ServicosContratadosPage implements OnInit {
         toast.present();
       }
   		});
-      
-      
+    
   }
 
   async confirmar(id) {

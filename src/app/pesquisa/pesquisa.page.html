@@ -16,6 +16,7 @@
         <ion-select-option value="entrtenimento">Entretenimento</ion-select-option>
         <ion-select-option value="seguranca">Segurança</ion-select-option>
         <ion-select-option value="limpeza">Limpeza</ion-select-option>
+        <ion-select-option value="outros">Outros</ion-select-option>
         <ion-select-option value="todos">Todos</ion-select-option>
     </ion-select>
   </ion-item>
@@ -33,12 +34,13 @@
   <h4><b>Sua Pesquisa</b></h4>
   <ion-list>
     <ion-item-sliding *ngFor="let servico of servicos">
-        <ion-card>
-          <ion-item>
+        <ion-card (click)="goToPerfilServico(servico.idService)">
+          <ion-item >
           <ion-card-title>{{servico.Nome}}</ion-card-title>
         </ion-item>
           
-          <ion-card-content></ion-card-content>
+        <ion-card-content>{{servico.Tipo}}</ion-card-content>
+        <ion-card-content>{{servico.Descricao}}</ion-card-content>
           
         </ion-card>
     </ion-item-sliding>

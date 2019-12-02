@@ -113,4 +113,7 @@ export class PesquisaPage implements OnInit {
   });
 }
 
+    goToPerfilServico(id){
+      this.router.navigate(['/perfil-servico/' + id]);
+    }
 }

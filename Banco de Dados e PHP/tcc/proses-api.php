@@ -640,7 +640,7 @@
 
   //método para deletar servico da lista serviços
   elseif($postjson['aksi']=='delServicoContratado'){
-    $query = mysqli_query($mysqli, "DELETE FROM listaservice WHERE idListaService='$postjson[idListaService]'");
+    $query = mysqli_query($mysqli, "DELETE FROM listaservice WHERE idService='$postjson[idService]'");
 
     if($query) $result = json_encode(array('success'=>true, 'result'=>'success', 'msg'=>'Deletado com sucesso'));
     else $result = json_encode(array('success'=>false, 'result'=>'error', 'msg'=>'Erro ao deletar'));
