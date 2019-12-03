@@ -14,26 +14,142 @@
         
       <ion-row>
           <ion-col size="7">
-            <div align="start"><ion-text color="light"><b>Festa</b></ion-text></div>
+            <div *ngIf = "item_festa != 0; else elsetag" align="start"><ion-text color="light"><b>Festa</b></ion-text></div>
+            <ng-template #elsetag>
+            </ng-template>
           </ion-col>
           <ion-col>
             <div align="start"><ion-text color="light"><b>Quant.</b></ion-text></div>
           </ion-col>
         </ion-row>
-
-
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Coxinha de Frango</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{homens}} unid. </div>
+          </ion-col>
+        </ion-row>
         <ion-row class="ion-align-items-center">
           <ion-col size="6">
             <div>Bolinha de Queijo</div>
           </ion-col>
           <ion-col no-padding>
-            <div align="right">100</div>
-          </ion-col>
-          <ion-col no-padding>
-            <div>Unid.</div>
+            <div align="right">{{mulheres}} unid. </div>
           </ion-col>
         </ion-row>
-
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Mini Quibe</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{adolescentes}} unid. </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Croquete</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{criancas}} unid. </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Enroladinho de Salsicha</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{qtde_salgados}} unid. </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Enroladinho de Presunto e Queijo</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{qtde_salgados}} unid. </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Pão de Queijo</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{qtde_salgados}} unid. </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Risoles de Presunto e Queijo</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{qtde_salgados}} unid. </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Risoles de Camarão</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{qtde_salgados}} unid. </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Pastel</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{qtde_salgados}} unid. </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Emapdinha</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{qtde_salgados}} unid. </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Nuggets de Frango</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{qtde_salgados}} unid. </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Croissant</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{qtde_salgados}} unid. </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Trouxinha</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{qtde_salgados}} unid. </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Esfiha</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{qtde_salgados}} unid. </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Mini Pizza</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">{{qtde_salgados}} unid. </div>
+          </ion-col>
+        </ion-row>
         <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
         <ion-row>
         <ion-col size="7">

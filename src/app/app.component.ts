@@ -70,7 +70,7 @@ export class AppComponent {
 
     this.storage.get('session_storage').then((res)=>{
       if(res == null){
-        this.router.navigate(['/carregamento1']);
+        this.router.navigate(['/login']);
       }else{
         this.router.navigate(['/home']);
       }
