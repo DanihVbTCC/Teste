@@ -4,6 +4,7 @@ import { PostProvider } from '../../providers/post-provider';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 import { mobiscroll, MbscColorOptions } from '@mobiscroll/angular';
+import { Http } from '@angular/http';
 
 
 
@@ -45,12 +46,15 @@ export class AdicionarEventoPage implements OnInit {
     private router: Router,
   	private postPvdr: PostProvider,
     public toastCtrl: ToastController,
+    public http: Http,
     private storage: Storage,
     ) 
     { }
 
   ngOnInit() {
   }
+
+
 
   async addEvento(){
     return new Promise(resolve => {
@@ -75,7 +79,74 @@ export class AdicionarEventoPage implements OnInit {
         duration: 3000
       });
       toast.present();
-  }
+  }else if(this.uf==""){
+    const toast = await this.toastCtrl.create({
+      message: 'UF Obrigatório',
+      duration: 3000
+    });
+    toast.present();
+}else if(this.cidade==""){
+  const toast = await this.toastCtrl.create({
+    message: 'Cidade Obrigatória',
+    duration: 3000
+  });
+  toast.present();
+}
+else if(this.bairro==""){
+  const toast = await this.toastCtrl.create({
+    message: 'Bairro Obrigatório',
+    duration: 3000
+  });
+  toast.present();
+}else if(this.endereco==""){
+  const toast = await this.toastCtrl.create({
+    message: 'Endereço Obrigatório',
+    duration: 3000
+  });
+  toast.present();
+}else if(this.numero==0){
+  const toast = await this.toastCtrl.create({
+    message: 'Número Obrigatório',
+    duration: 3000
+  });
+  toast.present();
+}else if(this.date1==""){
+  const toast = await this.toastCtrl.create({
+    message: 'Data de Início Obrigatória',
+    duration: 3000
+  });
+  toast.present();
+}else if(this.date2==""){
+  const toast = await this.toastCtrl.create({
+    message: 'Data de Término Obrigatória',
+    duration: 3000
+  });
+  toast.present();
+}else if(this.date1>this.date2){
+  const toast = await this.toastCtrl.create({
+    message: 'Datas Inválidas',
+    duration: 3000
+  });
+  toast.present();
+}else if(this.time1==""){
+  const toast = await this.toastCtrl.create({
+    message: 'Hora de Início Obrigatória',
+    duration: 3000
+  });
+  toast.present();
+}else if(this.time2==""){
+  const toast = await this.toastCtrl.create({
+    message: 'Hora de Término Obrigatória',
+    duration: 3000
+  });
+  toast.present();
+}else if(this.date1==this.date2 || this.time1>=this.time2){
+  const toast = await this.toastCtrl.create({
+    message: 'Horas Inválidas',
+    duration: 3000
+  });
+  toast.present();
+}
     else{
 
       let body = {

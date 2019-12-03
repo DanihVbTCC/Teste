@@ -23,7 +23,7 @@ export class HomePage implements OnInit {
   pesquisar: string = "";
   tipo: string = "todos";
   chave: boolean = true;
-  FirstTime: string;
+  FirstTime: string= "";
 
   constructor(
     private router: Router,
@@ -37,42 +37,38 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.storage.get('session_storage').then((res)=>{
-      this.anggota = res;
-      this.idUsuario = this.anggota.idUsuario;
-      this.FirstTime = this.anggota.FirstTime;
-      console.log(res);
-      if(this.FirstTime=="y"){
-        this.router.navigate(['/welcome']);
-      }
-      else{
-        this.ionViewWillEnter();
-      }
-    });
-
-  }
-
-  ionViewWillEnter(){
-    this.menuCtrl.enable(true);
+    this.FirstTime="";
     this.storage.get('session_storage').then((res)=>{
       this.anggota = res;
       this.idUsuario = this.anggota.idUsuario;
       this.FirstTime=this.anggota.FirstTime;
       console.log(res);
+      this.chave=true;
+      
+    });  }
+
+  ionViewWillEnter(){
+    this.menuCtrl.enable(true);
+    this.chave=true;
+    this.eventos=[];
+    this.storage.get('session_storage').then((res)=>{
+      this.anggota = res;
+      console.log(res);
+      this.idUsuario = this.anggota.idUsuario;
+      this.FirstTime=this.anggota.FirstTime;
     });
-    if(this.FirstTime=="y"){
-      this.router.navigate(['/welcome']);
-    }
-    else{  
-      if(this.chave==true){
-      this.eventos=[];
+     if(this.chave==true){
     this.presentLoadingWithOptions();
     this.chave=false;
-    }}
+    }
+    
+  
+      
   }  
 
   loadEvento(){
   	return new Promise(resolve => {
+      this.eventos=[];
       this.storage.get('session_storage').then((res)=>{
         this.anggota = res;
         this.idUsuario = this.anggota.idUsuario;
@@ -86,6 +82,11 @@ export class HomePage implements OnInit {
         this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
           for(let evento of data.result){
             this.eventos.push(evento);
+          }
+          if(this.FirstTime=="y"){
+            this.router.navigate(['/welcome']);
+            this.chave=true;
+            console.log("isso");
           }
           resolve(true);
         });
@@ -202,7 +203,6 @@ export class HomePage implements OnInit {
       translucent: true,
       cssClass: 'custom-class custom-loading'
     });
-    this.eventos = [];
     this.start = 0;
   	this.loadEvento();
     return await loading.present();

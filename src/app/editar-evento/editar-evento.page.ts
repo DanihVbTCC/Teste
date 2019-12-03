@@ -62,13 +62,92 @@ export class EditarEventoPage implements OnInit {
       this.storage.get('session_storage2').then(async (res)=>{
         this.anggota = res;
         this.idEvento = this.anggota.idEvento;
-    if(this.NomeEvento==""){
+        if(this.NomeEvento==""){
+          const toast = await this.toastCtrl.create({
+            message: 'Nome Obrigatório',
+            duration: 3000
+          });
+          toast.present();
+      }else if(this.TipoEvento==""){
+          const toast = await this.toastCtrl.create({
+            message: 'Tipo Obrigatória',
+            duration: 3000
+          });
+          toast.present();
+      }else if(this.CEP==""){
         const toast = await this.toastCtrl.create({
-          message: 'Nome Obrigatório',
+          message: 'CEP Obrigatório',
           duration: 3000
         });
         toast.present();
-    }
+    }else if(this.Estado==""){
+      const toast = await this.toastCtrl.create({
+        message: 'Estado Obrigatório',
+        duration: 3000
+      });
+      toast.present();
+  }else if(this.Cidade==""){
+    const toast = await this.toastCtrl.create({
+      message: 'Cidade Obrigatória',
+      duration: 3000
+    });
+    toast.present();
+  }
+  else if(this.Bairro==""){
+    const toast = await this.toastCtrl.create({
+      message: 'Bairro Obrigatório',
+      duration: 3000
+    });
+    toast.present();
+  }else if(this.Endereco==""){
+    const toast = await this.toastCtrl.create({
+      message: 'Endereço Obrigatório',
+      duration: 3000
+    });
+    toast.present();
+  }else if(this.Numero==0){
+    const toast = await this.toastCtrl.create({
+      message: 'Número Obrigatório',
+      duration: 3000
+    });
+    toast.present();
+  }else if(this.date1==""){
+    const toast = await this.toastCtrl.create({
+      message: 'Data de Início Obrigatória',
+      duration: 3000
+    });
+    toast.present();
+  }else if(this.date2==""){
+    const toast = await this.toastCtrl.create({
+      message: 'Data de Término Obrigatória',
+      duration: 3000
+    });
+    toast.present();
+  }else if(this.date1>this.date2){
+    const toast = await this.toastCtrl.create({
+      message: 'Datas Inválidas',
+      duration: 3000
+    });
+    toast.present();
+  }else if(this.time1==""){
+    const toast = await this.toastCtrl.create({
+      message: 'Hora de Início Obrigatória',
+      duration: 3000
+    });
+    toast.present();
+  }else if(this.time2==""){
+    const toast = await this.toastCtrl.create({
+      message: 'Hora de Término Obrigatória',
+      duration: 3000
+    });
+    toast.present();
+  }else if(this.date1==this.date2 || this.time1>=this.time2){
+    const toast = await this.toastCtrl.create({
+      message: 'Horas Inválidas',
+      duration: 3000
+    });
+    toast.present();
+  }
     else{
 
       let body = {
