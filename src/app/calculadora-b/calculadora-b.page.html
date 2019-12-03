@@ -34,10 +34,14 @@
 
 
 		<h4 class="padding-top"><b>Informe a duração do evento</b></h4>
-		<mbsc-form [options]="formSettings">
-		<mbsc-stepper [(ngModel)]="horas" color="primary" step="0.5"  val="left">Horas
-		</mbsc-stepper>
-	</mbsc-form>
+
+		<ion-item>
+			<ion-label>Horas</ion-label>
+			<div align="end">
+				<ion-input type="number" inputmode="numeric"></ion-input>
+			</div>
+		</ion-item>
+
 
 	</ion-list>
 
