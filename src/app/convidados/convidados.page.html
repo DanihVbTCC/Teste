@@ -9,8 +9,8 @@
 
 <ion-content  class="ion-padding">
   <form>
-    <ion-searchbar placeholder="Pesquisar convidado..." cancelButtonText="Cancelar" animated></ion-searchbar>
-    <ion-button class="ion-button" expand="block" color="light">Pesquisar</ion-button>
+    <ion-searchbar [(ngModel)]="pesquisar" name="pesquisar" placeholder="Pesquisar convidado..." cancelButtonText="Cancelar" animated></ion-searchbar>
+    <ion-button class="ion-button" (click)="pesquisa()" expand="block" color="light">Pesquisar</ion-button>
   </form>
   <ion-grid  no-padding>     
     

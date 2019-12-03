@@ -13,9 +13,13 @@ import { AlertController } from '@ionic/angular';
 export class PerfilClientePage implements OnInit {
 
   idUsuario: string= "";
+  anio: number = new Date().getFullYear();
+  ano: number;
   nome: string = "";
   email: string ="";
+  data:string="";
   cpf: string = "";
+  login: string = "";
   celular: string = "";
   telefone: string = "";
   contato_secundario: string = "";
@@ -35,11 +39,14 @@ export class PerfilClientePage implements OnInit {
   	public toastCtrl: ToastController
   ) { }
   ngOnInit() {
+    this.ano=this.anio-14;
        this.storage.get('session_storage').then((res)=>{
       this.anggota = res;
-      this.nome = this.anggota.Nome,
+      this.nome = this.anggota.Nome;
+      this.login=this.anggota.Login;
       this.email = this.anggota.Email;
       this.cpf = this.anggota.CPF;
+      this.data=this.anggota.DataNasc;
       this.celular = this.anggota.Celular;
       this.telefone = this.anggota.Telefone;
       this.contato_secundario = this.anggota.SecunContat;
@@ -61,11 +68,14 @@ export class PerfilClientePage implements OnInit {
   }
 
   ionViewWillEnter(){
+    this.ano=this.anio-14;
     this.storage.get('session_storage').then((res)=>{
       this.anggota = res;
       this.nome = this.anggota.Nome,
+      this.data=this.anggota.DataNasc;
       this.email = this.anggota.Email;
       this.cpf = this.anggota.CPF;
+      this.login=this.anggota.Login;
       this.celular = this.anggota.Celular;
       this.telefone = this.anggota.Telefone;
       this.contato_secundario = this.anggota.SecunContat;
@@ -88,7 +98,11 @@ export class PerfilClientePage implements OnInit {
     else{
 
       let body = {
+        nome: this.nome,
         cpf: this.cpf,
+        data:this.data,
+        email: this.email,
+        login: this.login,
         celular: this.celular,
         telefone: this.telefone,
         contato_secundario: this.contato_secundario,
@@ -167,9 +181,11 @@ export class PerfilClientePage implements OnInit {
         this.anggota = res;
         this.nome = this.anggota.Nome,
         this.email = this.anggota.Email;
+        this.data=this.anggota.DataNasc;
         this.cpf = this.anggota.CPF;
         this.celular = this.anggota.Celular;
         this.telefone = this.anggota.Telefone;
+        this.login=this.anggota.Login;
         this.contato_secundario = this.anggota.SecunContat;
       });
               
@@ -181,5 +197,9 @@ export class PerfilClientePage implements OnInit {
       await alert.present();
       
     }
+  }
+  
+  formAlterarSenha(){
+    this.router.navigate(['/alterar-senha/']);
   }
 }

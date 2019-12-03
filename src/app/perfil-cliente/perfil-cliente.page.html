@@ -21,14 +21,30 @@
 
         </ion-item>
 
+		<ion-item lines="none">
+				<ion-label position="floating">Nome</ion-label>
+				<ion-input type="text" required="true" [disabled]="display" [(ngModel)]="nome"></ion-input>
+		</ion-item>
+
+		<ion-item lines="none">
+				<ion-label position="floating">Login</ion-label>
+				<ion-input type="text" required="true" [disabled]="display" [(ngModel)]="login"></ion-input>
+		</ion-item>
+
+		<ion-item lines="none">
+				<ion-label position="floating">Email</ion-label>
+				<ion-input type="text" required="true" [disabled]="display" [(ngModel)]="email"></ion-input>
+		</ion-item>
+
 	  <ion-item lines="none">
 		<ion-label position="floating">CPF</ion-label>
-		<ion-input type="text" [disabled]="display" [(ngModel)]="cpf"></ion-input>
+		<ion-input type="text" required="true" [disabled]="display" [(ngModel)]="cpf"></ion-input>
 	  </ion-item>
+
 
 	   <ion-item lines="none">
 		<ion-label position="floating">Celular</ion-label>
-		<ion-input type="text" [disabled]="display" [(ngModel)]="celular"></ion-input>
+		<ion-input type="text" required="true" [disabled]="display" [(ngModel)]="celular"></ion-input>
 	  </ion-item>
 
 	  <ion-item lines="none">
@@ -41,11 +57,17 @@
 		<ion-input type="text" [disabled]="display" [(ngModel)]="contato_secundario"></ion-input>
 	  </ion-item>
 
+	  <ion-item  lines="none">
+			<ion-label  position="floating" class="ion-text-wrap">Data de Nascimento</ion-label>
+			<ion-datetime [disabled]="display" [(max)]="ano" monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
+			 cancel-text="Calcelar" done-text="Ok" display-format="DD/MM/YYYY" picker-format="DD/MMMM/YYYY" required="true" [(ngModel)]="data"></ion-datetime>
+		  </ion-item>
+
 	</ion-list>
 </ion-card>
 
 </ion-content>
 
 <ion-footer class="ion-padding-bottom">
-	  <ion-button  class="ion-button" expand="block" padding color="light">Alterar Senha</ion-button>
+	  <ion-button class="ion-button" expand="block" color="light" (click)="formAlterarSenha()">Alterar Senha</ion-button>
 </ion-footer>

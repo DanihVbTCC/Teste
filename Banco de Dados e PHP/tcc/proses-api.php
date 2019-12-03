@@ -30,6 +30,7 @@
         'Celular' => $data['Celular'],
         'Telefone' => $data['Telefone'],
         'SecunContat'=> $data['SecunContat'],
+        'DataNasc' => $data['DataNasc'],
 	      'FirstTime' => $data['FirstTime'],
         'Status' => $data['Status']
       );
@@ -196,39 +197,67 @@
   }
 
     //Update do perfil cliente (editar perfil)
-    elseif($postjson['aksi']=='updatePerfil'){
-      $query = mysqli_query($mysqli, "UPDATE usuario SET
-        CPF =  '$postjson[cpf]',
-        Celular =  '$postjson[celular]',
-        Telefone =  '$postjson[telefone]',
-        SecunContat =  '$postjson[contato_secundario]' WHERE idUsuario='$postjson[idUsuario]'");
+      elseif($postjson['aksi']=='updatePerfil'){
+        $query = mysqli_query($mysqli, "UPDATE usuario SET
+          CPF =  '$postjson[cpf]',
+          Nome = '$postjson[nome]',
+          Login = '$postjson[login]',
+          Email = '$postjson[email]',
+          DataNasc = '$postjson[data]',
+          Celular =  '$postjson[celular]',
+          Telefone =  '$postjson[telefone]',
+          SecunContat =  '$postjson[contato_secundario]' WHERE idUsuario='$postjson[idUsuario]'");
 
-      $query = mysqli_query($mysqli, "SELECT * FROM usuario WHERE idUsuario='$postjson[idUsuario]'");
-      $check = mysqli_num_rows($query);
-    if($check>0){
-      $data = mysqli_fetch_array($query);
-      $datauser = array(
-        'idUsuario' => $data['idUsuario'],
-        'Login' => $data['Login'],
-        'Senha' => $data['Senha'],
-        'Nome' => $data['Nome'],
-        'Email' => $data ['Email'],
-        'idTipo' => $data['idTipo'],
-        'CPF' => $data['CPF'],
-        'Celular' => $data['Celular'],
-        'Telefone' => $data['Telefone'],
-        'SecunContat'=> $data['SecunContat'],
-        'FirstTime' => $data['FirstTime'],
-        'Status' => $data['Status']
-      );
+        $query = mysqli_query($mysqli, "SELECT * FROM usuario WHERE idUsuario='$postjson[idUsuario]'");
+        $check = mysqli_num_rows($query);
+      if($check>0){
+        $data = mysqli_fetch_array($query);
+        $datauser = array(
+          'idUsuario' => $data['idUsuario'],
+          'Login' => $data['Login'],
+          'Senha' => $data['Senha'],
+          'Nome' => $data['Nome'],
+          'Email' => $data ['Email'],
+          'DataNasc' => $data['DataNasc'],
+          'idTipo' => $data['idTipo'],
+          'CPF' => $data['CPF'],
+          'Celular' => $data['Celular'],
+          'Telefone' => $data['Telefone'],
+          'SecunContat'=> $data['SecunContat'],
+          'FirstTime' => $data['FirstTime'],
+          'Status' => $data['Status']
+        );
 
-        $result = json_encode(array('success'=>true, 'result'=>$datauser));
-    }else{
-      $result = json_encode(array('success'=>false, 'msg'=>'Erro ao alterar informações'));
-    }
+          $result = json_encode(array('success'=>true, 'result'=>$datauser));
+      }else{
+        $result = json_encode(array('success'=>false, 'msg'=>'Erro ao alterar informações'));
+      }
 
-    echo $result;
-    }
+      echo $result;
+      }
+
+      //Alterar Senha
+        elseif($postjson['aksi']=='updateSenha'){
+          $newpassword = md5($postjson['newpassword']);
+          $password = md5($postjson['password']);
+          $query2 = mysqli_query($mysqli, "SELECT * FROM usuario WHERE idUsuario='$postjson[idUsuario]' AND Senha='$password'");
+          $check = mysqli_num_rows($query2);
+
+          if($check==1){
+          $query = mysqli_query($mysqli, "UPDATE usuario SET
+            Senha =  '$newpassword'");
+
+
+        if($query){
+            $result = json_encode(array('success'=>true, 'msg'=>'Alterado com Sucesso'));
+        }else{
+          $result = json_encode(array('success'=>false, 'msg'=>'Erro ao alterar informações'));
+        }
+      }else{
+        $result = json_encode(array('success'=>false, 'msg'=>'Senha atual iválida'));
+      }
+        echo $result;
+        }
 
     //Update First Time
     elseif($postjson['aksi']=='updateFirst'){
@@ -343,6 +372,7 @@
     echo $result;
 
     }
+
 
 
     //método para cadastrar servico
@@ -586,7 +616,37 @@
     else $result = json_encode(array('success'=>false));
     echo $result;
   }
-  //contaiza quantos convidados há
+
+  //Pesquisar Convidaos
+  elseif($postjson['aksi']=='pesquisarconvidado'){
+    $data = array();
+    $pesquisa = $postjson['pesquisa'];
+      $query = mysqli_query($mysqli, "SELECT * FROM listaconvidados where Nome like '%$pesquisa%' AND idEvento='$postjson[idEvento]' ORDER BY Nome");
+      $check = mysqli_num_rows($query);
+
+  while($row = mysqli_fetch_array($query)){
+    $data[] = array(
+      'idEvento' => $row['idEvento'],
+      'idListaConvidados' => $row['idListaConvidados'],
+      'Nome' => $row['Nome'],
+      'Tipo' => $row['Tipo'],
+      'Situacao' => $row['Situacao'],
+    );
+  }
+
+  if($check>0){
+  if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+  else $result = json_encode(array('success'=>false));
+  }
+  else{
+    $result = json_encode(array('sucess'=>false, 'msg'=>'Nenhum convidado encontrado'));
+  }
+
+  echo $result;
+
+  }
+
+  //contalizar quantos convidados há
   elseif($postjson['aksi']=='total'){
     $data = array();
     $query = mysqli_query($mysqli, "SELECT count(*) FROM listaconvidados where idEvento='$postjson[idEvento]'");

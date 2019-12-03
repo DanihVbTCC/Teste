@@ -48,6 +48,8 @@ const routes: Routes = [
   { path: 'carregamento2', loadChildren: './carregamento2/carregamento2.module#Carregamento2PageModule' },
   { path: 'adicionar-servico-evento', loadChildren: './adicionar-servico-evento/adicionar-servico-evento.module#AdicionarServicoEventoPageModule' },
   { path: 'servicos-contratados/:id', loadChildren: './servicos-contratados/servicos-contratados.module#ServicosContratadosPageModule' },
+  { path: 'pesquisa-convidados/:pesquisar/:id', loadChildren: './pesquisa-convidados/pesquisa-convidados.module#PesquisaConvidadosPageModule' },
+
 
 
 

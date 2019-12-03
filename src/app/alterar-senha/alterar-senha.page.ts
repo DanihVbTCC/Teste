@@ -11,6 +11,12 @@ import { Storage } from '@ionic/Storage';
 })
 export class AlterarSenhaPage implements OnInit {
 
+  anggota: any;
+  idUsuario: number;
+  confpassword: string;
+  newpassword: string;
+  password: string;
+
   constructor(
   	private router: Router,
   	private postPvdr: PostProvider,
@@ -18,10 +24,64 @@ export class AlterarSenhaPage implements OnInit {
   	public toastCtrl: ToastController
   ) { }
   ngOnInit() {
+    
+       this.storage.get('session_storage').then((res)=>{
+      this.anggota = res;
+      this.idUsuario = this.anggota.idUsuario;
+      console.log(res);
+    });
   }
 
-  formLogin(){
-  	this.router.navigate(['/login']);
+  ionViewWillEnter(){
+    this.storage.get('session_storage').then((res)=>{
+      this.anggota = res;
+      this.idUsuario = this.anggota.idUsuario;
+      console.log(res);
+    });
+  }
+
+  async Salvar(){
+  	if(this.newpassword == this.confpassword){
+      this.storage.get('session_storage').then((res)=>{
+        this.anggota = res;
+        this.idUsuario = this.anggota.idUsuario;
+        console.log(res);
+
+        let body = {
+          password: this.password,
+          newpassword: this.newpassword,
+          idUsuario: this.idUsuario,
+          aksi: 'updateSenha'
+        };
+  
+        this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
+          let alertpesan = data.msg;
+          console.log(data);
+          if(data.success){
+            const toast = await this.toastCtrl.create({
+              message: 'Alterado com Sucesso',
+              duration: 3000
+            });
+            this.router.navigate(['/perfil-cliente/']);
+            toast.present();
+        }
+          else{
+            const toast = await this.toastCtrl.create({
+              message: alertpesan,
+              duration: 3000
+            });
+            toast.present();
+          }
+        });
+
+      });
+    }else{
+      const toast = await this.toastCtrl.create({
+        message: 'Senhas Inválidas',
+        duration: 3000
+      });
+      toast.present();
+    }
   }
 
 }
