@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carregamento1',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Carregamento1Page implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter(){
+
+    for (let i = 0; i <= 5; i++) {
+      if(i=4){
+        this.router.navigate(['/login']);
+      }
+    }
   }
 
 }

@@ -14,9 +14,10 @@ import { AlertController } from '@ionic/angular';
 export class ConvidadosPage implements OnInit {
 
   idEvento: number;
-  total: number;
+  total: number=0;
   anggota: any;
   anggota2: any;
+  pesquisar: string="";
   convidados: any = [];
   totals: any = [];
   cor1: string = "light";
@@ -194,5 +195,25 @@ export class ConvidadosPage implements OnInit {
     return await loading.present();
 
   }
+
+  async pesquisa(){
+    if(this.pesquisar==""){
+      const toast = await this.toastCtrl.create({
+        message: 'Barra de pesquisa vazia',
+        duration: 3000
+      });
+      toast.present();
+
+    }else{
+    return new Promise(resolve => {
+      this.storage.get('session_storage2').then((res)=>{
+        this.anggota = res;
+        this.idEvento = this.anggota.idEvento;
+        console.log(res);
+    this.router.navigate(['/pesquisa-convidados/'+ this.pesquisar +'/'+ this.idEvento]);
+      });
+    });
+  }
+}
 
 }

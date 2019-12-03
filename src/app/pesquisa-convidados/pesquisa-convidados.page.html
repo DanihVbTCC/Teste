@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-toolbar color="light">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>Pesquisar Convidado</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-searchbar [(ngModel)]="pesquisar" name="pesquisar" class="ion-button" placeholder="Pesquisar por Serviços" cancelButtonText="Cancelar" animated></ion-searchbar>
+    <ion-button class="ion-button"  (click)="pesquisa()" expand="block" color="light">Pesquisar</ion-button>
+  
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Puxe para atualizar"
+        refreshingSpinner="circles"
+        refreshingText="Carregando...">
+      </ion-refresher-content>
+    </ion-refresher>
+  
+    <ion-grid  no-padding>     
+    
+        <br>
+        <ion-row>
+            <ion-col size="7">
+              <div align="start"><ion-text color="light"><b>Sua Pesquisa</b></ion-text></div>
+            </ion-col>
+          </ion-row>
+  
+        <ion-item-sliding *ngFor="let convidado of convidados">
+          <ion-row class="ion-align-items-center">
+            <ion-col (click)="formAlterarConvidados(convidado.idListaConvidados)" size="6">
+              <div>{{convidado.Nome}}</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="center"><ion-checkbox color="light" (click)="Situacao(convidado.idListaConvidados, convidado.Situacao)" [checked]="convidado.Situacao"></ion-checkbox></div>
+            </ion-col>
+          </ion-row>
+        </ion-item-sliding>
+        </ion-grid>
+  
+  </ion-content>
+  
