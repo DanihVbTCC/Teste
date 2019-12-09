@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 export class PostProvider {
 	server: string = "http://localhost/tcc/"; // default
 	// Server da escola "http://tanembaun.etecpaof.lan/32605/tcc/"
-    // Server Local "http://localhost/tcc/"; 
+    // Server Local "http://192.168.0.4/tcc/"; 
 
 	constructor(public http : Http) {
 

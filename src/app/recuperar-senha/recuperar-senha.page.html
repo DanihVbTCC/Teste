@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar color="light">
         <ion-buttons slot="start">
-            <ion-back-button icon="md-arrow-back"></ion-back-button>
+            <ion-back-button defaultHref="login" icon="md-arrow-back"></ion-back-button>
           </ion-buttons>
       <ion-title>Recuperar Senha</ion-title>
     </ion-toolbar>
@@ -25,7 +25,5 @@
 </ion-content>
 
 <ion-footer class="ion-padding-bottom">
-<div class="ion-padding-bottom">
-    <ion-button expand="block" padding color="light" (click)="formInsirirCodigo()">Solicitar código</ion-button>
-</div>
+    <ion-button class="ion-button" expand="block" color="light" (click)="formInsirirCodigo()">Solicitar código</ion-button>
 </ion-footer>

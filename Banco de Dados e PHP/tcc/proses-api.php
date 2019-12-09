@@ -245,7 +245,7 @@
 
           if($check==1){
           $query = mysqli_query($mysqli, "UPDATE usuario SET
-            Senha =  '$newpassword'");
+            Senha =  '$newpassword' Where idUsuario='$postjson[idUsuario]'");
 
 
         if($query){
