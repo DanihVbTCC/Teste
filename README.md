@@ -1,6 +1,6 @@
 # Festa-Ja
 
-Repositório com o projeto finaliado do TCC efetuado na Etec Profª Anna de Oliveira Ferraz, durante o ano de 2019 (3 ano do ensino médio integrado ao técnico em informática). 
+Repositório com o projeto finalizado do TCC efetuado na Etec Profª Anna de Oliveira Ferraz, durante o ano de 2019 (3° ano do ensino médio integrado ao técnico em informática). 
 
 ## Integrantes
 Trabalho desenvolvido por 4 alunos eles sendo: 
